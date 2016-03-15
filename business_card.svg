@@ -1,0 +1,156 @@
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink" 
+   viewBox="10 -20 1100 700" width="1100px" height="700px"
+   >
+
+  <defs>
+    <!-- This particular filter does nothing. It is here to remind you 
+         to use `feConvolveMatrix` in your assignment. You should 
+         change it to suit your need. -->
+
+    <filter id="totallyUselessFilter">
+      <feConvolveMatrix kernelMatrix="0 1 0 0 1 0 0 1 0" />
+    </filter>
+
+    <filter id="dropshadow" height="200%" width="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="30"/> <!-- stdDeviation is how much to blur -->
+      <feOffset dx="40" dy="10" result="offsetblur"/> <!-- how much to offset -->
+      <feMerge> 
+        <feMergeNode/> <!-- this contains the offset blurred image -->
+        <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to -->
+      </feMerge>
+    </filter>
+
+    <pattern id="background_img" x="0" y="0" patternUnits="userSpaceOnUse"
+      width="99.8" height="59.8">
+      <image x="0" y="0" width="99.8" height="59.8" xlink:href="background_tile.jpg"></image>
+    </pattern>
+
+    <pattern id="photo" x="0" y="0" patternUnits="userSpaceOnUse" width="280" height="280">
+      <image x="0" y="0" width="280" height="280" xlink:href="photo.jpg"></image>
+    </pattern>
+
+    <linearGradient id="background_grad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="5%" stop-color="grey"/>
+      <stop offset="10%" stop-color="white"/>
+      <stop offset="35%" stop-color="grey" />
+      <stop offset="95%" stop-color="#333300"/>
+    </linearGradient>
+
+    <linearGradient id="qr_grad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#00CC66" />
+      <stop offset="1" stop-color="#0066CC" />
+    </linearGradient>
+
+    <filter id="backgroundFilter" color-interpolation-filters="sRGB" x="0" y="0" height="100%" width="100%">
+      <feColorMatrix in="SourceGraphic"
+      type="matrix"
+      values="0.393 0.769 0.189 0 0
+              0.349 0.686 0.168 0 0
+              0.272 0.534 0.131 0 0
+              0     0     0     1 0" />
+      <feColorMatrix type="hueRotate" in="SourceGraphic"
+      values="90" />
+    </filter>
+
+    <filter id="sharpen" >
+      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0" />
+    </filter>
+
+    <filter id="edgy">
+      <feConvolveMatrix kernelMatrix="0 -1 0 -1 4 -1 0 -1 0" />
+    </filter>
+
+    <filter id="emboss">
+      <feConvolveMatrix kernelMatrix="-2 -1 0 -1 1 1 0 1 2" />
+    </filter>
+
+
+    <filter id="increase_s" color-interpolation-filters="sRGB">
+      <feColorMatrix type="saturate" in="SourceGraphic" values="1.8"/>
+    </filter>
+
+    <filter id="titleFilter">
+      <feMorphology
+        operator="erode"
+        in="SourceGraphic"
+        radius="2" />
+        <feMorphology
+        operator="dilate"
+        in="SourceGraphic"
+        radius="1" />
+      <feConvolveMatrix kernelMatrix="0 -1 0 -1 4 -1 0 -1 0" />
+      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0" />
+      <feConvolveMatrix kernelMatrix="-2 -1 0 -1 1 1 0 1 2" />
+    </filter>
+  </defs>
+
+<g id="card">
+  <g transform="translate(20, 20)">
+    <rect
+       width="1000" height="600" stroke="#0000FF"
+       filter="url(#dropshadow)"  opacity="1.0"/>
+
+      <g >
+      <rect fill="url(#background_img)"   width="1000" height="600" >
+      </rect>
+
+      <rect fill="url(#background_grad)" opacity=".5" height="600" y="0" width="1000">
+      </rect>
+
+      </g>
+
+      <g transform="translate(700, 440)">
+        <image width="300" height="150" x="-40" y="-10" xlink:href="icons/univer.jpg"/>
+      </g>
+
+      <g transform="translate(230, 420)">
+        <a xlink:href="https://www.linkedin.com/in/hengrui-cao-81593595">
+        <g transform="translate(0, 0)">
+        <image width="40" height="40" xlink:href="icons/linkedin.svg"/>
+        </g>
+        </a>
+
+        <g transform="translate(0, 50)">
+          <image width="40" height="40" xlink:href="icons/Whatsapp.svg"/>
+          <text x="50" y="30" font-size="30">
+            +852 55370048
+          </text>
+        </g>
+
+        <a xlink:href="mailto:hengruicao@gmail.com">
+          <g transform="translate(0, 100)">
+           <image width="40" height="40" xlink:href="icons/gmail.svg"/>
+            <text x="50" y="30" font-size="30">
+              hengruicao@gmail.com
+            </text>
+          </g>
+        </a>
+
+      </g>
+
+        <a xlink:href="http://vps254691.ovh.net">
+          <g transform="translate(0, 400)">
+          <image width="180" height="180" x="20" xlink:href="my_vps_url.svg"/>
+          <rect filter="url(#dropshadow)" fill="url(#qr_grad)" width="180" height="180" x="20" opacity=".5" />
+          </g>
+        </a>
+
+        <g transform="translate(-13,-0)" filter="url(#increase_s)">
+          <!-- start photo -->
+          <circle id='top' cx="133" cy="120" r="100" fill="url(#photo)"/>
+        </g>
+
+      <g transform="translate(320, 100)" filter="url(#titleFilter)">
+        <text x="29" y="40" font-size="84" font-family="Times" fill="#001111">
+           Hengrui CAO
+        </text>
+      </g>
+  <!-- End Contents -->
+  </g> 
+</g>
+
+</svg>
+
