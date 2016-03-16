@@ -1,0 +1,211 @@
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink" 
+   viewBox="10 -20 1100 700" width="1100px" height="700px"
+   >
+
+  <defs>
+
+    <filter id="reflection_blur" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1" />
+    </filter>
+
+    <linearGradient id="vertical_gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" style="stop-color:black" stop-opacity="0.0" />
+      <stop offset="0.5" style="stop-color:grey" stop-opacity=".9" />
+      <stop offset="1" style="stop-color:black" stop-opacity="0.0" />
+    </linearGradient>
+
+    <linearGradient id="shadow_gradient" x1="0%" y1="0%" x2="0%" y2="100%">  
+            <stop offset="10%"  stop-color="black"/>
+            <stop offset="100%" stop-color="grey"/>
+    </linearGradient>
+
+
+    <radialGradient id="grad_rad">
+      <stop offset="10%" stop-color="white" stop-opacity=".8"/>
+      <stop offset="95%" stop-color="white" stop-opacity=".0"/>
+    </radialGradient>
+
+    <filter id="dropshadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="30"/>
+      <feOffset dx="20" dy="20" result="offsetblur"/> 
+      <feComposite operator="over" in="SourceGraphic" in2="offsetblur" result="final"/>
+      <feMerge> 
+        <feMergeNode in="offsetblur"/> 
+        <feMergeNode in="SourceGraphic"/>        
+        <feMergeNode in="final"/>        
+      </feMerge>
+    </filter>
+
+    <pattern id="background_img" x="0" y="0" patternUnits="userSpaceOnUse"
+      width="99.8" height="59.8">
+      <image x="0" y="0" width="99.8" height="59.8" xlink:href="assets/background_tile.jpg"></image>
+    </pattern>
+
+    <clipPath id="photo-clip">
+      <circle cx="133" cy="120" r="100" />
+    </clipPath>
+
+    <pattern id="photo" x="0" y="0" patternUnits="userSpaceOnUse" width="280" height="280" >
+      <image x="0" y="0" width="280" height="280"
+        xlink:href="me.jpg"
+        ></image>
+    </pattern>
+
+    <filter id="photo_filter">
+    <feImage result="sourceTwo" xlink:href="me.jpg"
+      preserveAspectRatio="xMidYMid slice" />
+    <feComposite in="SourceGraphic" in2="sourceTwo"
+      operator="arithmetic" k1="0" k2=".5" k3=".7" k4="0"/>
+    </filter>
+
+    <linearGradient id="background_grad" x1="0" x2="0" y1="0" y2="1" gradientTransform="rotate(-10)">
+      <stop offset="5%" stop-color="#0066FF"/>
+      <stop offset="40%" stop-color="#000000"/>
+<!--       <stop offset="35%" stop-color="#00FF66" />
+ -->      <stop offset="95%" stop-color="#FF0000" stop-opacity=".9"/>
+    </linearGradient>
+
+    <linearGradient id="qr_grad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#00CC66" />
+      <stop offset="1" stop-color="#0066CC" />
+    </linearGradient>
+
+    <filter id="backgroundFilter" color-interpolation-filters="sRGB" x="0" y="0" height="100%" width="100%">
+      <feColorMatrix in="SourceGraphic"
+      type="matrix"
+      values="0.393 0.769 0.189 0 0
+              0.349 0.686 0.168 0 0
+              0.272 0.534 0.131 0 0
+              0     0     0     1 0" />
+
+       <feColorMatrix type="hueRotate" 
+      values="30" />
+      <feColorMatrix type="saturate" values="3"/>
+    </filter>
+
+    <filter id="univer_filter" color-interpolation-filters="sRGB">
+      <feColorMatrix type="saturate" values="3"/>
+    </filter>
+
+    <filter id="sharpen" >
+      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0" />
+    </filter>
+
+    <filter id="edgy">
+      <feConvolveMatrix kernelMatrix="0 -1 0 -1 4 -1 0 -1 0" />
+    </filter>
+
+    <filter id="emboss">
+      <feConvolveMatrix kernelMatrix="-2 -1 0 -1 1 1 0 1 2" />
+    </filter>
+
+
+    <filter id="increase_s" color-interpolation-filters="sRGB">
+      <feColorMatrix type="saturate" in="SourceGraphic" values="1.5"/>
+      <feConvolveMatrix kernelMatrix="-0.5 -1 -0.5 -1 7 -1 -0.5 -1 -0.5" />
+       <feColorMatrix type="hueRotate" 
+      values="-5" />
+     </filter>
+
+    <filter id="titleFilter">
+      <feMorphology
+        operator="erode"
+        in="SourceGraphic"
+        radius="2" />
+        <feMorphology
+        operator="dilate"
+        in="SourceGraphic"
+        radius="1" />
+      <feConvolveMatrix kernelMatrix="0 -1 0 -1 5 -1 0 -1 0" />
+      <feConvolveMatrix kernelMatrix="-2 -1 0 -1 1 1 0 1 2" />
+    </filter>
+
+    <filter id="background_filter">
+      <feMerge>
+        <feMergeNode in="#background_img" />
+        <feMergeNode in="#background_grad" />
+      </feMerge>
+    </filter>
+  </defs>
+
+<g id="card">
+  <g transform="translate(20, 20)">
+      <g >
+      <rect fill="url(#background_img)" width="1000" height="600" 
+        rx="20" ry="20"
+        style="stroke:black;stroke-width:5" filter="url(#dropshadow)" >
+      </rect>
+      <rect fill="url(#background_grad)" width="1000" height="600" 
+        rx="20" ry="20"
+        style="stroke:url(#background_grad);stroke-width:5" opacity=".7">
+      </rect>
+
+      </g>
+
+      <g transform="translate(700, 440)" filter="url(#univer_filter)">
+        <image width="300" height="150" x="-40" y="-10" xlink:href="icons/univer.jpg"/>
+      </g>
+
+      <g transform="translate(230, 420)">
+        <g transform="translate(0, 0)">
+        <a xlink:href="mailto:hengruicao@gmail.com">
+           <image width="40" height="40" xlink:href="icons/gmail.svg"/>
+            <text x="50" y="30" font-size="30">
+              hengruicao@gmail.com
+            </text>
+        </a>
+        </g>
+
+        <g transform="translate(0, 50)">
+          <image width="40" height="40" xlink:href="icons/Whatsapp.svg"/>
+          <text x="50" y="30" font-size="30">
+            +852 55370048
+          </text>
+        </g>
+
+          <g transform="translate(0, 100)">
+        <a xlink:href="https://www.linkedin.com/in/hengrui-cao-81593595">
+        <image width="40" height="40" xlink:href="icons/linkedin.svg"/>
+        </a>
+
+        <a xlink:href="https://github.com/HengruiCao">
+        <image width="40" height="40" x="50" xlink:href="icons/github.svg"/>
+        </a>
+        </g>
+
+      </g>
+
+        <a xlink:href="http://vps254691.ovh.net">
+          <g transform="translate(0, 400)">
+          <image width="180" height="180" x="20" xlink:href="assets/my_vps_url.svg" opacity=".4"/>
+<!--           <rect fill="url(#qr_grad)" width="180" height="180" x="20" opacity=".8" />
+ -->          </g>
+        </a>
+
+        <g >
+        <g transform="translate(-13,40)" filter="url(#increase_s)">
+          <!-- start photo -->
+          <circle cx="133" cy="120" r="100" fill="url(#photo)" />
+        </g>
+        </g>
+
+      <g transform="translate(230, 180)" >
+        <text x="19" y="40" font-size="126" font-family="Times" fill="url(#vertical_gradient)" filter="url(#titleFilter)" >
+           Hengrui CAO
+        </text>
+        <rect y="80" width="760" height="1" fill="grey" opacity=".5"/>
+<!--         <text x="19" y="40" font-size="126" transform="translate(0, 90) scale(1, -1) "
+          font-family="Times" fill="url(#shadow_gradient)" filter="url(#reflection_blur)">
+           Hengrui CAO
+        </text>
+ -->
+       </g>
+  <!-- End Contents -->
+  </g> 
+</g>
+
+</svg>
+
